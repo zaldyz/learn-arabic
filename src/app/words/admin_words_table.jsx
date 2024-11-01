@@ -7,8 +7,6 @@ function sleep(ms) {
   return new Promise((resolve) => setTimeout(resolve, ms));
 }
 
-export const revalidate = 21600; // 6 hours in seconds
-
 async function getWords() {
   let client = await clientInstance;
   let db = client.db("arabic-glossary");
