@@ -67,17 +67,19 @@ export function DataTable({ columns, data, pageSize, button }) {
 
   return (
     <div>
-      <div className="flex items-center py-4 gap-3">
-        <Input
-          placeholder="Search for a word..."
-          value={table.getColumn("translation")?.getFilterValue() ?? ""}
-          onChange={(event) =>
-            table.getColumn("translation")?.setFilterValue(event.target.value)
-          }
-          className="max-w-sm"
-        />
-        <Search />
-        <div className="flex gap-3 items-center ml-auto">
+      <div className="flex items-center py-4 gap-3 flex-wrap md:justify-between md:flex-nowrap">
+        <div className="flex items-center flex-nowrap flex-row gap-3 md:max-w-md">
+          <Input
+            placeholder="Search for a word..."
+            value={table.getColumn("translation")?.getFilterValue() ?? ""}
+            onChange={(event) =>
+              table.getColumn("translation")?.setFilterValue(event.target.value)
+            }
+            className="md:w-[350px]"
+          />
+          <Search />
+        </div>
+        <div className="flex gap-3 items-center">
           {button}
           <DropdownMenu>
             <DropdownMenuTrigger asChild>

@@ -145,3 +145,18 @@
     --ring: 263.4 70% 50.4%;
   }
 }
+
+.hide-on-mobile {
+  display: block;
+}
+
+@media (max-width: 768px) {
+  .show-on-mobile {
+    display: block;
+  }
+
+  .hide-on-mobile {
+    display: none;
+  }
+
+}
