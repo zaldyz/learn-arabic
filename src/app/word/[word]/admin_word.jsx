@@ -13,10 +13,16 @@ import Translation from "./translations_badges";
 import SimilarWords from "./similar_words_badges";
 import EditWordButton from "./edit_word_button";
 
+// Sleep function that returns a Promise
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms));
+}
+
 const getWord = async (id) => {
   let client = await clientInstance;
   let db = client.db("arabic-glossary");
   let collection = db.collection("words");
+  // await sleep(5000);
   return collection.findOne({ _id: ObjectId.createFromHexString(id) });
 };
 

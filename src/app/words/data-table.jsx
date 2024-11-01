@@ -132,6 +132,7 @@ export function DataTable({ columns, data, pageSize, button }) {
             {table.getRowModel().rows?.length ? (
               table.getRowModel().rows.map((row) => (
                 <TableRow
+                  className="cursor-pointer"
                   onClick={() => {
                     router.push(`/word/${row.original._id}`);
                   }}
