@@ -20,14 +20,14 @@ export default function Page({ params }) {
     return notFound();
   }
   return (
-    <main className="container flex min-h-screen flex-col items-center mx-auto py-16">
-      <Card className="container p-4">
+    <main className="md:container flex flex-col items-center py-5 md:py-16 md:mx-auto">
+      <Card className="container p-0 md:p-4 md:border">
         <CardHeader>
           <CardTitle>Edit Word</CardTitle>
           <CardDescription>Edit the details of an arabic word.</CardDescription>
         </CardHeader>
         <CardContent className="container grid gap-4">
-          <div className=" flex items-center space-x-4 rounded-md border p-4">
+          <div className="flex items-center space-x-4 rounded-md border p-4">
             <Suspense
               fallback={
                 <div className="flex items-center mx-auto py-16">
@@ -40,22 +40,24 @@ export default function Page({ params }) {
               <AdminWord id={params.word} />
             </Suspense>
           </div>
-          <Suspense
-            fallback={
-              <div className="flex-col justify-between rounded-md">
-                <Skeleton className="h-12 mb-2" />
-                <Skeleton className="h-12 my-2" />
-                <Skeleton className="h-12 my-2" />
-                <Skeleton className="h-12 my-2" />
-                <Skeleton className="h-12 my-2" />
-                <Skeleton className="h-12 my-2" />
-                <Skeleton className="h-12 my-2" />
-                <Skeleton className="h-12 mt-2" />
-              </div>
-            }
-          >
-            <EditWordTable />
-          </Suspense>
+          <div className="p-0 overflow-auto">
+            <Suspense
+              fallback={
+                <div className="flex-col justify-between rounded-md">
+                  <Skeleton className="h-12 mb-2" />
+                  <Skeleton className="h-12 my-2" />
+                  <Skeleton className="h-12 my-2" />
+                  <Skeleton className="h-12 my-2" />
+                  <Skeleton className="h-12 my-2" />
+                  <Skeleton className="h-12 my-2" />
+                  <Skeleton className="h-12 my-2" />
+                  <Skeleton className="h-12 mt-2" />
+                </div>
+              }
+            >
+              <EditWordTable />
+            </Suspense>
+          </div>
         </CardContent>
         <CardFooter></CardFooter>
       </Card>

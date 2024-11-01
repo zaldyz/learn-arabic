@@ -29,11 +29,11 @@ const getWord = async (id) => {
 export default async function AdminWord({ id }) {
   const word = await getWord(id);
   return (
-    <div className="flex flex-col space-y-2 p-4">
-      <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-4xl md:text-6xl font-medium leading-none">
+    <div className="flex flex-col space-y-1 p-4 flex-1">
+      <div className="flex justify-between items-center text-6xl font-medium leading-none">
         <HoverCard>
           <HoverCardTrigger asChild>
-            <button className="my-4">{word.arabic}</button>
+            <button>{word.arabic}</button>
           </HoverCardTrigger>
           <HoverCardContent className="w-50">
             <div className="flex justify-between space-x-4">
@@ -50,27 +50,30 @@ export default async function AdminWord({ id }) {
         </HoverCard>
         <EditWordButton word={word} />
       </div>
-
-      <div className="flex flex-col lg:flex-row lg:gap-20 gap-8">
-        <div className="flex flex-col space-y-4">
-          <h2 className="text-lg font-medium">Translation</h2>
+      <div className="flex flex-row gap-20">
+        <div className="flex flex-col">
+          <h2 className="scroll-m-20 pt-2 text-lg font-medium first:mt-0">
+            Translation
+          </h2>
           <Translation className="py-0.5" translation={word.translation} />
-          <h2 className="text-lg font-medium">Tags</h2>
+          <h2 className="scroll-m-20 pt-2 text-lg font-medium first:mt-0">
+            Tags
+          </h2>
           <Tags className="py-0.5" tags={word.tags} />
         </div>
-
-        <div className="flex flex-col space-y-4">
-          <h2 className="text-lg font-medium">Gender</h2>
+        <div className="flex flex-col">
+          <h2 className="scroll-m-20 pt-2 text-lg font-medium first:mt-0">
+            Gender
+          </h2>
           <Gender className="py-0.5" gender={word.gender} />
-          <h2 className="text-lg font-medium">Root Word</h2>
+          <h2 className="scroll-m-20 pt-2 text-lg font-medium first:mt-0">
+            Root Word
+          </h2>
           <RootWord className="py-0.5" root_word={word.root_word} />
         </div>
       </div>
-
-      <div className="space-y-2">
-        <h2 className="text-lg font-medium">Similar Words</h2>
-        <SimilarWords className="py-0.5" similar_words={word.similar_words} />
-      </div>
+      <h2 className="scroll-m-20 pt-2 text-lg font-medium">Similar Words</h2>
+      <SimilarWords className="py-0.5" similar_words={word.similar_words} />
     </div>
   );
 }
