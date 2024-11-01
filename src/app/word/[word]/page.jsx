@@ -1,6 +1,9 @@
 import { notFound } from "next/navigation";
 import EditWordTable from "./edit_word_table";
 import AdminWord from "./admin_word";
+import { Skeleton } from "@/components/ui/skeleton";
+import { Suspense } from "react";
+import { Spinner } from "./loading_spinner";
 
 import {
   Card,
@@ -25,9 +28,34 @@ export default function Page({ params }) {
         </CardHeader>
         <CardContent className="container grid gap-4">
           <div className=" flex items-center space-x-4 rounded-md border p-4">
-            <AdminWord id={params.word} />
+            <Suspense
+              fallback={
+                <div className="flex items-center mx-auto py-16">
+                  <Spinner size="xl">
+                    <span className="">Loading...</span>
+                  </Spinner>
+                </div>
+              }
+            >
+              <AdminWord id={params.word} />
+            </Suspense>
           </div>
-          <EditWordTable />
+          <Suspense
+            fallback={
+              <div className="flex-col justify-between rounded-md">
+                <Skeleton className="h-12 mb-2" />
+                <Skeleton className="h-12 my-2" />
+                <Skeleton className="h-12 my-2" />
+                <Skeleton className="h-12 my-2" />
+                <Skeleton className="h-12 my-2" />
+                <Skeleton className="h-12 my-2" />
+                <Skeleton className="h-12 my-2" />
+                <Skeleton className="h-12 mt-2" />
+              </div>
+            }
+          >
+            <EditWordTable />
+          </Suspense>
         </CardContent>
         <CardFooter></CardFooter>
       </Card>
