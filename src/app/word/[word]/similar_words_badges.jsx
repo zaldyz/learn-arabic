@@ -22,7 +22,7 @@ export default async function SimilarWords({ similar_words, className }) {
     <div className={cn("flex gap-2", className)}>
       {words.length ? (
         words.map((similar_word) => (
-          <Link key={similar_word._id} href={`/admin/${similar_word._id}`}>
+          <Link key={similar_word._id} href={`/word/${similar_word._id}`}>
             <Badge key={similar_word._id} variant="secondary">
               {similar_word.arabic}
             </Badge>

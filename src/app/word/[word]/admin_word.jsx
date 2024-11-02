@@ -28,6 +28,8 @@ const getWord = async (id) => {
 
 export default async function AdminWord({ id }) {
   const word = await getWord(id);
+  word._id = word._id.toString();
+  console.log(word);
   return (
     <div className="flex flex-col space-y-2 p-4">
       <div className="flex flex-col md:flex-row justify-between items-start md:items-center text-4xl md:text-6xl font-medium leading-none">

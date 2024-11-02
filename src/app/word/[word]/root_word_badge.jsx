@@ -20,7 +20,7 @@ export default async function RootWord({ root_word, className }) {
   return (
     <div className={cn("flex gap-2", className)}>
       {word.arabic ? (
-        <Link href={`/admin/${word._id}`}>
+        <Link href={`/word/${word._id}`}>
           <Badge variant="secondary">{word.arabic}</Badge>
         </Link>
       ) : (

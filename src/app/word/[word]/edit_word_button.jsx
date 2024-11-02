@@ -48,6 +48,7 @@ import { Input } from "@/components/ui/input";
 export default function EditWordButton({ word }) {
   const [open, setOpen] = React.useState(false);
   const isDesktop = useMediaQuery("(min-width: 768px)");
+  console.log(word);
 
   if (isDesktop) {
     return (
@@ -88,7 +89,7 @@ export default function EditWordButton({ word }) {
             to make changes.
           </DrawerDescription>
         </DrawerHeader>
-        <ProfileForm className="px-4" onOpenChange={setOpen} />
+        <ProfileForm word={word} className="px-4" onOpenChange={setOpen} />
         <DrawerFooter className="pt-2">
           <DrawerClose asChild>
             <Button variant="outline">Cancel</Button>
@@ -114,6 +115,7 @@ function ProfileForm({ className, word, onOpenChange }) {
 
   function onSubmit(values) {
     console.log(values);
+    console.log(word);
     startTransition(async () => {
       const obj = await EditWord(
         word._id,
