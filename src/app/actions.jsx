@@ -3,13 +3,27 @@
 import { revalidatePath } from "next/cache";
 import clientInstance from "@/lib/mongo";
 import { ObjectId } from "mongodb";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../lib/authOptions";
+import { boolean } from "zod";
 
 export async function addSimilarWord(id, word_id) {
-  // TEMPORARY TO DEPLOY
-  return {
-    success: false,
-    message: "Permission Denied",
-  };
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return {
+      success: false,
+      message: "You Must be Signed in to make changes",
+    };
+  }
+  if (
+    session.user.email !== process.env.ADMIN_EMAIL &&
+    session.user.email !== process.env.ADMIN_EMAIL_2
+  ) {
+    return {
+      success: false,
+      message: "This account does not have permissions to make changes",
+    };
+  }
   if (id === word_id) {
     return {
       success: false,
@@ -54,11 +68,22 @@ export async function addSimilarWord(id, word_id) {
 }
 
 export async function addRootWord(id, word_id) {
-  // TEMPORARY TO DEPLOY
-  return {
-    success: false,
-    message: "Permission Denied",
-  };
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return {
+      success: false,
+      message: "You Must be Signed in to make changes",
+    };
+  }
+  if (
+    session.user.email !== process.env.ADMIN_EMAIL &&
+    session.user.email !== process.env.ADMIN_EMAIL_2
+  ) {
+    return {
+      success: false,
+      message: "This account does not have permissions to make changes",
+    };
+  }
   if (id === word_id) {
     return {
       success: false,
@@ -91,11 +116,22 @@ export async function addRootWord(id, word_id) {
 }
 
 export async function deleteWord(id, similar_words) {
-  // TEMPORARY TO DEPLOY
-  return {
-    success: false,
-    message: "Permission Denied",
-  };
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return {
+      success: false,
+      message: "You Must be Signed in to make changes",
+    };
+  }
+  if (
+    session.user.email !== process.env.ADMIN_EMAIL &&
+    session.user.email !== process.env.ADMIN_EMAIL_2
+  ) {
+    return {
+      success: false,
+      message: "This account does not have permissions to make changes",
+    };
+  }
   const client = await clientInstance;
   const db = client.db("arabic-glossary");
   const collection = db.collection("words");
@@ -156,11 +192,23 @@ export async function addNewWord(
   tags,
   gender
 ) {
-  // TEMPORARY TO DEPLOY
-  return {
-    success: false,
-    message: "Permission Denied",
-  };
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return {
+      success: false,
+      message: "You Must be Signed in to make changes",
+    };
+  }
+  if (
+    session.user.email !== process.env.ADMIN_EMAIL &&
+    session.user.email !== process.env.ADMIN_EMAIL_2
+  ) {
+    return {
+      success: false,
+      message: "This account does not have permissions to make changes",
+    };
+  }
+
   if (!arabic.trim() || !translation.trim() || !gender.trim()) {
     return {
       success: false,
@@ -225,11 +273,22 @@ export async function EditWord(
   tags,
   gender
 ) {
-  // TEMPORARY TO DEPLOY
-  return {
-    success: false,
-    message: "Permission Denied",
-  };
+  const session = await getServerSession(authOptions);
+  if (!session) {
+    return {
+      success: false,
+      message: "You Must be Signed in to make changes",
+    };
+  }
+  if (
+    session.user.email !== process.env.ADMIN_EMAIL &&
+    session.user.email !== process.env.ADMIN_EMAIL_2
+  ) {
+    return {
+      success: false,
+      message: "This account does not have permissions to make changes",
+    };
+  }
 
   if (!arabic.trim() || !translation.trim() || !gender.trim()) {
     return {

@@ -8,7 +8,8 @@ import { deleteWord } from "@/app/actions";
 export default function DeleteWordButton({ id, similar_words, children }) {
   const [isPending, startTransition] = useTransition();
 
-  const onClick = () => {
+  const onClick = (e) => {
+    e.stopPropagation();
     startTransition(async () => {
       const obj = await deleteWord(id, similar_words);
       if (obj.success) {
