@@ -159,7 +159,7 @@ export default function NavBar() {
               <NavUser session={session} />
             ) : (
               <Link
-                href="/admin"
+                href="/login"
                 className="text-sm font-medium transition-colors hover:text-primary"
               >
                 Sign in
