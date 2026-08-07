@@ -152,7 +152,11 @@ export const columns = [
         <AlertDialog>
           <DropdownMenu>
             <DropdownMenuTrigger asChild>
-              <Button variant="ghost" className="h-8 w-8 p-0">
+              <Button
+                variant="ghost"
+                className="h-8 w-8 p-0"
+                onClick={(e) => e.stopPropagation()}
+              >
                 <span className="sr-only">Open menu</span>
                 <MoreHorizontal className="h-4 w-4" />
               </Button>
@@ -160,21 +164,34 @@ export const columns = [
             <DropdownMenuContent align="end">
               <DropdownMenuLabel>Actions</DropdownMenuLabel>
               <DropdownMenuItem
-                onClick={() => navigator.clipboard.writeText(word.arabic)}
+                onClick={(e) => {
+                  e.stopPropagation();
+                  navigator.clipboard.writeText(word.arabic);
+                }}
                 className="flex justify-between items-center hover:cursor-pointer"
               >
                 Copy Arabic
                 <Clipboard className="h-3 w-3 ml-2" />
               </DropdownMenuItem>
               <DropdownMenuSeparator />
-              <Link href={`/word/${word._id}`} asChild>
-                <DropdownMenuItem className="flex justify-between items-center hover:cursor-pointer">
+              <Link
+                href={`/word/${word._id}`}
+                onClick={(e) => e.stopPropagation()}
+                asChild
+              >
+                <DropdownMenuItem
+                  className="flex justify-between items-center hover:cursor-pointer"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   Edit Word
                   <Pencil className="h-3 w-3 ml-2" />
                 </DropdownMenuItem>
               </Link>
               <AlertDialogTrigger asChild>
-                <DropdownMenuItem className="flex justify-between items-center text-red-600 hover:cursor-pointer focus:text-white focus:bg-red-500 dark:focus:bg-red-800/80">
+                <DropdownMenuItem
+                  className="flex justify-between items-center text-red-600 hover:cursor-pointer focus:text-white focus:bg-red-500 dark:focus:bg-red-800/80"
+                  onClick={(e) => e.stopPropagation()}
+                >
                   Delete Word
                   <OctagonX className="h-3 w-3 ml-2" />
                 </DropdownMenuItem>
@@ -194,6 +211,7 @@ export const columns = [
               <DeleteWordButton
                 id={word._id}
                 similar_words={word.similar_words}
+                onClick={(e) => e.stopPropagation()}
               >
                 Confirm
               </DeleteWordButton>
